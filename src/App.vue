@@ -2,14 +2,17 @@
   <div id="app">
     <MySearchBar @search="searchData" />
     <div class="container">
-      <div>
+      <div class="film-container">
         <h3>Film</h3>
-        <TheCard v-for="movie in movies" :key="movie.id" :production="movie" />
+        <div class="card-container">
+          <TheCard v-for="movie in movies" :key="movie.id" :production="movie" />
+        </div>
       </div>
-      <div>
+      <div class="serieTv-container">
         <h3>Serie Tv</h3>
-        <TheCard v-for="serie in series" :key="serie.id" :production="serie" />
-
+        <div class="card-container">
+          <TheCard v-for="serie in series" :key="serie.id" :production="serie" />
+        </div>
       </div>
     </div>
 
@@ -65,7 +68,26 @@ export default {
 
 <style lang="scss">
 .container {
+  min-height: 100vh;
+  padding: 50px;
   display: flex;
+  flex-direction: column;
+  background-color: gray;
   justify-content: space-around;
+}
+
+h3 {
+  color: white;
+  font-size: 35px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+body {
+  margin: 0;
 }
 </style>
