@@ -6,7 +6,8 @@
         <ul class="description">
             <li><strong>Titolo:</strong> {{ production.title || production.name }}</li>
             <li><strong>Titolo originale:</strong> {{ production.original_title || production.original_name }}</li>
-            <li><strong>Voto:</strong> {{ getstars }}</li>
+            <li><strong>Voto:</strong> <i v-for="n in 5" :key="n" class="fa-star"
+                    :class="getstars >= n ? 'fa-solid' : 'fa-regular'"></i></li>
             <li><strong>Lingua: </strong>
                 <img v-if="itHadFlags" :src="flagImg" :alt="production.original_language" class="flag">
                 <span v-else>{{ production.original_language }}</span>
@@ -38,15 +39,7 @@ export default {
         },
         getstars() {
             let valutation = Math.ceil(this.production.vote_average / 2)
-            let starValutation = ""
-            if (valutation === 0) {
-                starValutation = "Non valutato"
-            } else {
-                for (let i = 0; i < valutation; i++) {
-                    starValutation += '⭐';
-                }
-            }
-            return starValutation
+            return valutation
         }
     },
 }
